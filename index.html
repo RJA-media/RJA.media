@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>RJA Media – Media Marketing & Web Design Agency</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="RJA Media – Brisbane-based media marketing & web-design agency founded in 2023.">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{ --bg:#0b0f14; --surface:#12161d; --surface-light:#1a1f27; --purple:#7c3aed; --purple-light:#a78bfa; --text:#e2e8f0; --muted:#94a3b8; --white:#ffffff; --discount:#ef4444; }
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{font-family:'Montserrat',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+    /* ---------- NAVIGATION ---------- */
+    nav{position:fixed;top:0;width:100%;background:rgba(11,15,20,.85);backdrop-filter:blur(8px);border-bottom:1px solid var(--surface-light);z-index:1000}
+    .nav-container{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem}
+    .nav-logo{height:40px;display:flex;align-items:center}
+    .nav-logo svg{height:100%;width:auto}
+    .nav-links{display:flex;gap:2rem;list-style:none;font-family:'Montserrat',sans-serif}
+    .nav-links a{font-weight:500;transition:color .2s;color:var(--purple-light)}
+    .nav-links a:hover{color:var(--purple)}
+    .mobile-open{display:none;font-size:1.8rem;color:var(--text);cursor:pointer}
+    /* ---------- HERO ---------- */
+    .hero{min-height:100vh;display:flex;align-items:center;padding:8rem 1.25rem 4rem;position:relative;overflow:hidden}
+    .hero::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(to bottom, rgba(11,15,20,1) 0%, rgba(11,15,20,0.85) 40%, rgba(11,15,20,0.6) 70%, rgba(11,15,20,0) 100%), url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1920&q=80');background-size:cover;background-position:center;z-index:-1}
+    .hero-container{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;position:relative;z-index:1}
+    .hero h1{font-size:clamp(2.8rem,5vw,4rem);font-weight:700;line-height:1.2}
+    .hero .accent{color:var(--purple-light)}
+    .hero p{margin:1.5rem 0 2rem;color:var(--muted);max-width:480px}
+    .btn{display:inline-block;background:var(--purple);color:var(--white);padding:.9rem 2rem;border-radius:6px;font-weight:600;transition:background .2s}
+    .btn:hover{background:var(--purple-light)}
+    /* ---------- SHOWCASE ---------- */
+    .showcase{max-width:1200px;margin:0 auto;padding:0 1.25rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem}
+    .showcase-item{background:var(--surface);border-radius:8px;overflow:hidden;border:1px solid var(--surface-light)}
+    .showcase-item img{width:100%;height:180px;object-fit:cover}
+    .showcase-item p{padding:1rem;font-size:.9rem;color:var(--muted)}
+    /* ---------- WEBSITE PACKAGES ---------- */
+    .packages{background:var(--surface);padding:4rem 1.25rem}
+    .packages .container{max-width:1200px;margin:0 auto}
+    .pkg-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2rem}
+    .pkg-card{background:var(--bg);border:1px solid var(--surface-light);border-radius:8px;padding:2rem;display:flex;flex-direction:column;transition:transform .2s,border-color .2s}
+    .pkg-card:hover{transform:translateY(-4px);border-color:var(--purple)}
+    .pkg-title{font-size:1.25rem;font-weight:600;margin-bottom:.5rem}
+    .pkg-price{font-size:2rem;font-weight:700;color:var(--purple-light);margin-bottom:.25rem}
+    .pkg-old{color:var(--muted);text-decoration:line-through;font-size:1rem}
+    .pkg-save{color:var(--discount);font-size:.9rem;margin-bottom:1rem}
+    .pkg-features{list-style:none;color:var(--muted);font-size:.9rem;margin-bottom:1.5rem;flex-grow:1}
+    .pkg-features li{margin-bottom:.4rem}
+    .pkg-note{text-align:center;margin-top:2rem;font-size:.85rem;color:var(--muted)}
+    /* ---------- AD CAMPAIGNS ---------- */
+    .ad-campaigns{background:var(--bg);padding:4rem 1.25rem}
+    .ad-campaigns .container{max-width:1200px;margin:0 auto}
+    .ad-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2rem}
+    .ad-card{background:var(--surface);border:1px solid var(--surface-light);border-radius:8px;padding:2rem;display:flex;flex-direction:column;transition:transform .2s,border-color .2s}
+    .ad-card:hover{transform:translateY(-4px);border-color:var(--purple)}
+    .ad-title{font-size:1.25rem;font-weight:600;margin-bottom:.5rem}
+    .ad-price{font-size:2rem;font-weight:700;color:var(--purple-light);margin-bottom:1rem}
+    .ad-features{list-style:none;color:var(--muted);font-size:.9rem;margin-bottom:1.5rem;flex-grow:1}
+    .ad-features li{margin-bottom:.4rem}
+    /* ---------- SERVICES / ABOUT / CONTACT / FOOTER ---------- */
+    section{padding:5rem 1.25rem}
+    .container{max-width:1200px;margin:0 auto}
+    .section-title{font-size:2.4rem;font-weight:700;margin-bottom:3rem;text-align:center}
+    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2rem}
+    .service-card{background:var(--surface);padding:2rem;border-radius:8px;border:1px solid var(--surface-light);transition:transform .2s,border-color .2s}
+    .service-card:hover{transform:translateY(-4px);border-color:var(--purple)}
+    .service-icon{width:44px;height:44px;margin-bottom:1rem;color:var(--purple-light)}
+    .about-content{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+    .about-text p{margin-bottom:1rem;color:var(--muted)}
+    .stats{display:flex;gap:2.5rem;margin-top:2rem}
+    .stat strong{display:block;font-size:2rem;color:var(--purple-light)}
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem}
+    .contact-info p{margin:.5rem 0;color:var(--muted)}
+    .contact-form{display:flex;flex-direction:column;gap:1rem}
+    .contact-form input,.contact-form textarea{width:100%;padding:.9rem;background:var(--surface);border:1px solid var(--surface-light);border-radius:6px;color:var(--text)}
+    .contact-form input:focus,.contact-form textarea:focus{outline:none;border-color:var(--purple)}
+    footer{background:var(--surface);text-align:center;padding:2.5rem 1.25rem;border-top:1px solid var(--surface-light)}
+    footer p{color:var(--muted);font-size:.9rem}
+    /* ---------- RESPONSIVE ---------- */
+    @media(max-width:900px){
+      .nav-links{display:none}
+      .mobile-open{display:block}
+      .hero-container,.about-content,.contact-grid{grid-template-columns:1fr}
+      .hero{text-align:center}
+    }
+
+    /* ---------- FADE-IN ANIMATION FOR PACKAGES ---------- */
+    @keyframes fadeInUp{
+      0%{opacity:0;transform:translateY(40px)}
+      100%{opacity:1;transform:translateY(0)}
+    }
+    .packages.animate .pkg-card{
+      animation:fadeInUp .6s ease-out forwards;
+    }
+    .packages.animate .pkg-card:nth-child(1){animation-delay:.1s}
+    .packages.animate .pkg-card:nth-child(2){animation-delay:.2s}
+    .packages.animate .pkg-card:nth-child(3){animation-delay:.3s}
+    .packages.animate .pkg-card:nth-child(4){animation-delay:.4s}
+  </style>
+</head>
+<body>
+
+<!-- ---------- NAVIGATION ---------- -->
+<nav>
+  <div class="nav-container">
+    <a href="#home" class="nav-logo">
+      <svg width="auto" height="40" viewBox="0 0 90 40" xmlns="http://www.w3.org/2000/svg">
+        <g filter="url(#glow)">
+          <text x="0" y="30" fill="url(#purpleGrad)" font-size="32" font-weight="700" font-family="Montserrat, sans-serif" letter-spacing="2">RJA</text>
+        </g>
+        <defs>
+          <linearGradient id="purpleGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#a78bfa"/>
+            <stop offset="100%" stop-color="#7c3aed"/>
+          </linearGradient>
+          <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+            <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#7c3aed" flood-opacity=".45"/>
+          </filter>
+        </defs>
+      </svg>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#packages">Packages</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <span class="mobile-open">☰</span>
+  </div>
+</nav>
+
+<!-- ---------- HERO ---------- -->
+<section id="home" class="hero">
+  <div class="hero-container container">
+    <div>
+      <h1>Media Marketing &amp; <span class="accent">Web Design</span> Agency</h1>
+      <p>RJA Media crafts high-impact websites and data-driven marketing for businesses that want to stand out online. Founded in 2023, based in Brisbane.</p>
+      <a href="#packages" class="btn">View Packages</a>
+    </div>
+    <div></div>
+  </div>
+</section>
+
+<!-- ---------- SHOWCASE ---------- -->
+<section style="padding-top:0">
+  <div class="showcase">
+    <div class="showcase-item">
+      <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?auto=format&fit=crop&w=800&q=60" alt="Modern website design">
+      <p>Sleek, responsive layouts that convert visitors into customers.</p>
+    </div>
+    <div class="showcase-item">
+      <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&w=800&q=60" alt="SEO optimisation">
+      <p>Search-engine ready code to push you up the rankings.</p>
+    </div>
+    <div class="showcase-item">
+      <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=60" alt="Mobile design">
+      <p>Pixel-perfect mobile experience for every device.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ---------- WHAT WE DO (NEW SECTION) ---------- -->
+<section id="what-we-do" style="background:var(--surface);padding:5rem 1.25rem">
+  <div class="container">
+    <h2 class="section-title">What We Do – & Who We Do It For</h2>
+    <p style="max-width:740px;margin:0 auto 3rem;text-align:center;color:var(--muted)">
+      We’re the one-stop studio for local businesses who want to look bigger, sell faster and scale smarter.
+      From one-man trade outfits to stocked-online stores, we build the sites and run the ads that keep the phone ringing.
+    </p>
+    <div class="cards">
+      <div class="service-card">
+        <svg class="service-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+          <path d="M3 9h18M9 21V9"/>
+        </svg>
+        <h3>Web Design &amp; Development</h3>
+        <p>Pixel-perfect, mobile-first sites built to convert. Whether you need a slick one-pager for your lawn-mowing round or a 50-product Shopify store, we handle design, build, SEO copy and speed optimisation—so you can take care of business.</p>
+      </div>
+      <div class="service-card">
+        <svg class="service-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+          <circle cx="19" cy="5" r="2"/>
+        </svg>
+        <h3>Ads That Actually Sell</h3>
+        <p>Google Search, Maps, Facebook, Instagram, TikTok and YouTube—managed under one roof. We write the copy, build the creative, track the calls and optimise weekly so every dollar turns into a lead, booking or sale.</p>
+      </div>
+      <div class="service-card">
+        <svg class="service-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+        </svg>
+        <h3>Start-ups to Pro-Grade</h3>
+        <p>Just launched? We’ll get you online in 48 h with a logo, domain and first customer. Already turning over 7 figures? Our dev and growth team becomes your in-house digital department—without the six-figure payroll.</p>
+      </div>
+      <div class="service-card">
+        <svg class="service-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+          <path d="M10 7V5a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v2"/>
+        </svg>
+        <h3>Built for Local Trade</h3>
+        <p>Electricians, plumbers, landscapers, builders—if you quote jobs on-site, we build quote forms that sync to your CRM, add click-to-call buttons and geo-target your ads to the suburbs you actually service.</p>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:3rem">
+      <a href="#contact" class="btn">Book a Free Strategy Call</a>
+    </div>
+  </div>
+</section>
+
+<!-- ---------- WEBSITE PACKAGES ---------- -->
+<section id="packages" class="packages">
+  <div class="container">
+    <h2 class="section-title">Website Packages</h2>
+    <div class="pkg-grid">
+      <div class="pkg-card">
+        <h3 class="pkg-title">Single Page</h3>
+        <div class="pkg-price">$199</div>
+        <div class="pkg-old">$299</div>
+        <div class="pkg-save">Save $100 – Limited time</div>
+        <ul class="pkg-features">
+          <li>✓ One-page responsive site</li>
+          <li>✓ Contact form + map</li>
+          <li>✓ Social links</li>
+          <li>✓ 48-hr delivery*</li>
+        </ul>
+        <a href="#contact" class="btn">Get Started</a>
+      </div>
+      <div class="pkg-card">
+        <h3 class="pkg-title">3-Page + SEO</h3>
+        <div class="pkg-price">$499</div>
+        <div class="pkg-old">$699</div>
+        <div class="pkg-save">Save $200 – Limited time</div>
+        <ul class="pkg-features">
+          <li>✓ Home / About / Services</li>
+          <li>✓ On-page SEO setup</li>
+          <li>✓ Google My Business</li>
+          <li>✓ Mobile first design</li>
+        </ul>
+        <a href="#contact" class="btn">Get Started</a>
+      </div>
+      <div class="pkg-card">
+        <h3 class="pkg-title">5-Page Pro</h3>
+        <div class="pkg-price">$998</div>
+        <div class="pkg-old"></div>
+        <div class="pkg-save">Most Popular</div>
+        <ul class="pkg-features">
+          <li>✓ Full 5-page website</li>
+          <li>✓ Complete technical SEO</li>
+          <li>✓ Blog / portfolio module</li>
+          <li>✓ Speed & security optimised</li>
+        </ul>
+        <a href="#contact" class="btn">Get Started</a>
+      </div>
+      <div class="pkg-card">
+        <h3 class="pkg-title">High-Spec Custom</h3>
+        <div class="pkg-price">From $2,500</div>
+        <div class="pkg-old"></div>
+        <div class="pkg-save">Bespoke build</div>
+        <ul class="pkg-features">
+          <li>✓ Tailored design & UX</li>
+          <li>✓ Advanced animations</li>
+          <li>✓ E-commerce / booking</li>
+          <li>✓ Ongoing support</li>
+        </ul>
+        <a href="#contact" class="btn">Get Started</a>
+      </div>
+    </div>
+    <p class="pkg-note">*All website packages require a publishing fee of $20 per month.</p>
+  </div>
+</section>
+
+<!-- ---------- AD CAMPAIGNS ---------- -->
+<section id="campaigns" class="ad-campaigns">
+  <div class="container">
+    <h2 class="section-title">Ad Campaign Packages</h2>
+    <div class="ad-grid">
+      <div class="ad-card">
+        <h3 class="ad-title">Standard</h3>
+        <div class="ad-price">$998<span style="font-size:1rem;font-weight:400;">/month</span></div>
+        <ul class="ad-features">
+          <li>✓ Google & Meta ads</li>
+          <li>✓ Up to 3 campaigns</li>
+          <li>✓ Monthly reporting</li>
+          <li>✓ Creative refresh</li>
+        </ul>
+        <a href="#contact" class="btn">Get Started</a>
+      </div>
+      <div class="ad-card">
+        <h3 class="ad-title">Professional</h3>
+        <div class="ad-price">$3,000<span style="font-size:1rem;font-weight:400;">/month</span></div>
+        <ul class="ad-features">
+          <li>✓ Multi-platform (Google, Meta, LinkedIn)</li>
+          <li>✓ Unlimited campaigns</li>
+          <li>✓ Weekly optimisation</li>
+          <li>✓ Dedicated strategist</li>
+          <li>✓ Advanced tracking & attribution</li>
+        </ul>
+        <a href="#contact" class="btn">Get Started</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ---------- SERVICES ---------- -->
+<section id="services">
+  <div class="container">
+    <h2 class="section-title">How We Help You Grow</h2>
+    <div class="cards">
+      <div class="service-card">
+        <svg class="service-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+        <h3>Web Design &amp; Development</h3>
+        <p>Responsive, lightning-fast websites that convert visitors into customers.</p>
+      </div>
+      <div class="service-card">
+        <svg class="service-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        <h3>Digital Marketing</h3>
+        <p>SEO, PPC and social campaigns engineered for measurable ROI.</p>
+      </div>
+      <div class="service-card">
+        <svg class="service-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        <h3>Branding &amp; Identity</h3>
+        <p>Logos, colour palettes and guidelines that make you unforgettable.</p>
+      </div>
+      <div class="service-card">
+        <svg class="service-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2m10 0V2m0 2v2M8 2v2"/></svg>
+        <h3>Conversion Optimisation</h3>
+        <p>Data-driven tweaks that turn more clicks into clients.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ---------- ABOUT ---------- -->
+<section id="about">
+  <div class="container about-content">
+    <div>
+      <h2 class="section-title">Founded in Brisbane, 2023</h2>
+      <p>We’re a tight-knit team of designers, developers and growth marketers obsessed with one thing: results. From single-page sites to multi-channel campaigns, we build digital assets that work as hard as you do.</p>
+      <div class="stats"></div>
+    </div>
+    <div>
+      <svg width="100%" viewBox="0 0 400 250"><rect width="400" height="250" rx="12" fill="url(#a)"/><text x="200" y="130" text-anchor="middle" fill="#fff" font-size="26" font-weight="700">RJA Media</text><defs><linearGradient id="a" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#12161d"/><stop offset="100%" stop-color="#7c3aed"/></linearGradient></defs></svg>
+    </div>
+  </div>
+</section>
+
+<!-- ---------- CONTACT ---------- -->
+<section id="contact">
+  <div class="container">
+    <h2 class="section-title">Let’s Talk</h2>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h3>Contact</h3>
+        <p><strong>Email:</strong> ryder@rja.media</p>
+        <p><strong>Phone:</strong> 0477 336 558</p>
+        <p><strong>Location:</strong> Brisbane, Australia</p>
+      </div>
+      <a href="mailto:ryder@rja.media?subject=Website%20Enquiry&body=Hi%20RJA%20Media,%0A%0AI'd%20like%20to%20discuss…" class="btn" style="align-self:start;padding:1rem 2rem">Send us an email</a>
+    </div>
+  </div>
+</section>
+
+<!-- ---------- FOOTER ---------- -->
+<footer>
+  <p>© 2024 RJA Media – Brisbane, Australia</p>
+</footer>
+
+<script>
+  /* ---------- mobile nav toggle ---------- */
+  document.querySelector('.mobile-open').onclick=()=>{
+    const links=document.querySelector('.nav-links');
+    links.style.display=links.style.display==='flex'?'none':'flex';
+    links.style.position='absolute';links.style.top='100%';links.style.left='1.25rem';links.style.right='1.25rem';
+    links.style.flexDirection='column';links.style.background='rgba(11,15,20,.95)';links.style.padding='1rem';links.style.borderRadius='8px';links.style.backdropFilter='blur(10px)';
+  };
+
+  /* ----------pkg-title">3-Page + SEO</h3>
+        <div class="pkg-price">$499</div>
+        <div class="pkg-old">$699</div>
+        <div class="pkg-save">Save $200 – Limited time</div>
+        <ul class="pkg-features">
+          <li>✓ Home / About / Services</li>
+          <li>✓ On-page SEO setup</li>
+          <li>✓ Google My Business</li>
+          <li>✓ Mobile first design</li>
+        </ul>
+        <a href="#contact" class="btn">Get Started</a>
+      </div>
+      <div class="pkg-card">
+        <h3 class="pkg-title">5-Page Pro</h3>
+        <div class="pkg-price">$998</div>
+        <div class="pkg-old"></div>
+        <div class="pkg-save">Most Popular</div>
+        <ul class="pkg-features">
+          <li>✓ Full 5-page website</li>
+          <li>✓ Complete technical SEO</li>
+          <li>✓ Blog / portfolio module</li>
+          <li>✓ Speed & security optimised</li>
+        </ul>
+        <a href="#contact" class="btn">Get Started</a>
+      </div>
+      <div class="pkg-card">
+        <h3 class="pkg-title">High-Spec Custom</h3>
+        <div class="pkg-price">From $2,500</div>
+        <div class="pkg-old"></div>
+        <div class="pkg-save">Bespoke build</div>
+        <ul class="pkg-features">
+          <li>✓ Tailored design & UX</li>
+          <li>✓ Advanced animations</li>
+          <li>✓ E-commerce / booking</li>
+          <li>✓ Ongoing support</li>
+        </ul>
+        <a href="#contact" class="btn">Get Started</a>
+      </div>
+    </div>
+    <p class="pkg-note">*All website packages require a publishing fee of $20 per month.</p>
+  </div>
+</section>
+
+<!-- ---------- AD CAMPAIGNS ---------- -->
+<section id="campaigns" class="ad-campaigns">
+  <div class="container">
+    <h2 class="section-title">Ad Campaign Packages</h2>
+    <div class="ad-grid">
+      <div class="ad-card">
+        <h3 class="ad-title">Standard</h3>
+        <div class="ad-price">$998<span style="font-size:1rem;font-weight:400;">/month</span></div>
+        <ul class="ad-features">
+          <li>✓ Google & Meta ads</li>
+          <li>✓ Up to 3 campaigns</li>
+          <li>✓ Monthly reporting</li>
+          <li>✓ Creative refresh</li>
+        </ul>
+        <a href="#contact" class="btn">Get Started</a>
+      </div>
+      <div class="ad-card">
+        <h3 class="ad-title">Professional</h3>
+        <div class="ad-price">$3,000<span style="font-size:1rem;font-weight:400;">/month</span></div>
+        <ul class="ad-features">
+          <li>✓ Multi-platform (Google, Meta, LinkedIn)</li>
+          <li>✓ Unlimited campaigns</li>
+          <li>✓ Weekly optimisation</li>
+          <li>✓ Dedicated strategist</li>
+          <li>✓ Advanced tracking & attribution</li>
+        </ul>
+        <a href="#contact" class="btn">Get Started</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ---------- SERVICES ---------- -->
+<section id="services">
+  <div class="container">
+    <h2 class="section-title">How We Help You Grow</h2>
+    <div class="cards">
+      <div class="service-card">
+        <svg class="service-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+        <h3>Web Design &amp; Development</h3>
+        <p>Responsive, lightning-fast websites that convert visitors into customers.</p>
+      </div>
+      <div class="service-card">
+        <svg class="service-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        <h3>Digital Marketing</h3>
+        <p>SEO, PPC and social campaigns engineered for measurable ROI.</p>
+      </div>
+      <div class="service-card">
+        <svg class="service-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        <h3>Branding &amp; Identity</h3>
+        <p>Logos, colour palettes and guidelines that make you unforgettable.</p>
+      </div>
+      <div class="service-card">
+        <svg class="service-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2m10 0V2m0 2v2M8 2v2"/></svg>
+        <h3>Conversion Optimisation</h3>
+        <p>Data-driven tweaks that turn more clicks into clients.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ---------- ABOUT ---------- -->
+<section id="about">
+  <div class="container about-content">
+    <div>
+      <h2 class="section-title">Founded in Brisbane, 2023</h2>
+      <p>We’re a tight-knit team of designers, developers and growth marketers obsessed with one thing: results. From single-page sites to multi-channel campaigns, we build digital assets that work as hard as you do.</p>
+      <div class="stats"></div>
+    </div>
+    <div>
+      <svg width="100%" viewBox="0 0 400 250"><rect width="400" height="250" rx="12" fill="url(#a)"/><text x="200" y="130" text-anchor="middle" fill="#fff" font-size="26" font-weight="700">RJA Media</text><defs><linearGradient id="a" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#12161d"/><stop offset="100%" stop-color="#7c3aed"/></linearGradient></defs></svg>
+    </div>
+  </div>
+</section>
+
+<!-- ---------- CONTACT ---------- -->
+<section id="contact">
+  <div class="container">
+    <h2 class="section-title">Let’s Talk</h2>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h3>Contact</h3>
+        <p><strong>Email:</strong> ryder@rja.media</p>
+        <p><strong>Phone:</strong> 0477 336 558</p>
+        <p><strong>Location:</strong> Brisbane, Australia</p>
+      </div>
+      <a href="mailto:ryder@rja.media?subject=Website%20Enquiry&body=Hi%20RJA%20Media,%0A%0AI'd%20like%20to%20discuss…" class="btn" style="align-self:start;padding:1rem 2rem">Send us an email</a>
+    </div>
+  </div>
+</section>
+
+<!-- ---------- FOOTER ---------- -->
+<footer>
+  <p>© 2024 RJA Media – Brisbane, Australia</p>
+</footer>
+
+<script>
+  /* mobile nav toggle */
+  document.querySelector('.mobile-open').onclick=()=>{
+    const links=document.querySelector('.nav-links');
+    links.style.display=links.style.display==='flex'?'none':'flex';
+    links.style.position='absolute';links.style.top='100%';links.style.left='1.25rem';links.style.right='1.25rem';
+    links.style.flexDirection='column';links.style.background='rgba(11,15,20,.95)';links.style.padding='1rem';links.style.borderRadius='8px';links.style.backdropFilter='blur(10px)';
+  };
+
+  /* fade-in animation for packages section */
+  const packagesSection = document.querySelector('.packages');
+  const pkgObserver = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate');
+          pkgObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.25 }
+  );
+  if (packagesSection) pkgObserver.observe(packagesSection);
+</script>
+
+</body>
+</html>
